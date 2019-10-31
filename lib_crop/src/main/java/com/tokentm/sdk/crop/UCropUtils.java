@@ -1,4 +1,4 @@
-package com.token.cropapp;
+package com.tokentm.sdk.crop;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -17,12 +17,9 @@ public class UCropUtils {
      *
      * @param activity       上下文
      * @param sourceFilePath 需要裁剪图片的绝对路径
-     * @param aspectRatioX   裁剪图片宽高比
-     * @param aspectRatioY   裁剪图片宽高比
      * @return //
      */
-    public static Intent getUcropLauncher(FragmentActivity activity, String sourceFilePath,
-                                          float aspectRatioX, float aspectRatioY) {
+    public static Intent getUCropLauncher(FragmentActivity activity, String sourceFilePath) {
         Uri sourceUri = Uri.fromFile(new File(sourceFilePath));
         File outDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         if (!outDir.exists()) {
@@ -38,8 +35,8 @@ public class UCropUtils {
         UCrop.Options options = new UCrop.Options();
         //设置裁剪图片可操作的手势
         options.setAllowedGestures(UCropActivity.NONE, UCropActivity.NONE, UCropActivity.ALL);
-        //是否隐藏底部容器，默认显示
-        options.setHideBottomControls(true);
+        //是否隐藏底部容器，默认显示，true-隐藏  false-显示
+        options.setHideBottomControls(false);
         //设置toolbar颜色
         options.setToolbarColor(ActivityCompat.getColor(activity, R.color.colorPrimary));
         //设置状态栏颜色
@@ -49,7 +46,7 @@ public class UCropUtils {
         //UCrop配置
         uCrop.withOptions(options);
         //设置裁剪图片的宽高比，比如16：9
-//        uCrop.withAspectRatio(aspectRatioX, aspectRatioY);
+//        uCrop.withAspectRatio(16, 9);
         //uCrop.useSourceImageAspectRatio();
         return uCrop.getIntent(activity);
     }

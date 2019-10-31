@@ -1,6 +1,7 @@
 package com.token.cropapp;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 
 import com.tokentm.sdk.crop.UCrop;
+import com.tokentm.sdk.crop.UCropUtils;
 import com.xxf.arch.XXF;
 import com.xxf.arch.core.activityresult.ActivityResult;
 import com.xxf.arch.utils.ToastUtils;
@@ -60,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 new BottomPicSelectDialog(MainActivity.this, new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        startUCrop(MainActivity.this, s, UCrop.REQUEST_CROP, 16, 9);
+                        startUCrop(MainActivity.this, s, UCrop.REQUEST_CROP);
                     }
                 }).show();
             }
@@ -73,14 +75,12 @@ public class MainActivity extends AppCompatActivity {
      * @param activity       上下文
      * @param sourceFilePath 需要裁剪图片的绝对路径
      * @param requestCode    比如：UCrop.REQUEST_CROP
-     * @param aspectRatioX   裁剪图片宽高比
-     * @param aspectRatioY   裁剪图片宽高比
      * @return //
      */
     @SuppressLint("CheckResult")
     public void startUCrop(final FragmentActivity activity, String sourceFilePath,
-                           int requestCode, float aspectRatioX, float aspectRatioY) {
-        XXF.startActivityForResult(activity, UCropUtils.getUcropLauncher(activity, sourceFilePath, aspectRatioX, aspectRatioY), requestCode)
+                           int requestCode) {
+        XXF.startActivityForResult(activity, UCropUtils.getUCropLauncher(activity, sourceFilePath), requestCode)
                 .filter(new Predicate<ActivityResult>() {
             @Override
             public boolean test(ActivityResult activityResult) throws Exception {
@@ -103,11 +103,6 @@ public class MainActivity extends AppCompatActivity {
 //                        tessBaseAPI.end();
                 show_image.setImageBitmap(bitmap);
 //                        tv_show_content.setText(result);
-            }
-        }, new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) throws Exception {
-                ToastUtils.showToast(throwable.getMessage());
             }
         });
     }

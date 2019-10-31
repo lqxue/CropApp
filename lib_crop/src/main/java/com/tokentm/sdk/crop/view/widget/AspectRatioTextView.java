@@ -43,14 +43,14 @@ public class AspectRatioTextView extends TextView {
 
     public AspectRatioTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ucrop_AspectRatioTextView);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.crop_AspectRatioTextView);
         init(a);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public AspectRatioTextView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ucrop_AspectRatioTextView);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.crop_AspectRatioTextView);
         init(a);
     }
 
@@ -86,9 +86,9 @@ public class AspectRatioTextView extends TextView {
     private void init(@NonNull TypedArray a) {
         setGravity(Gravity.CENTER_HORIZONTAL);
 
-        mAspectRatioTitle = a.getString(R.styleable.ucrop_AspectRatioTextView_ucrop_artv_ratio_title);
-        mAspectRatioX = a.getFloat(R.styleable.ucrop_AspectRatioTextView_ucrop_artv_ratio_x, CropImageView.SOURCE_IMAGE_ASPECT_RATIO);
-        mAspectRatioY = a.getFloat(R.styleable.ucrop_AspectRatioTextView_ucrop_artv_ratio_y, CropImageView.SOURCE_IMAGE_ASPECT_RATIO);
+        mAspectRatioTitle = a.getString(R.styleable.crop_AspectRatioTextView_crop_artv_ratio_title);
+        mAspectRatioX = a.getFloat(R.styleable.crop_AspectRatioTextView_crop_artv_ratio_x, CropImageView.SOURCE_IMAGE_ASPECT_RATIO);
+        mAspectRatioY = a.getFloat(R.styleable.crop_AspectRatioTextView_crop_artv_ratio_y, CropImageView.SOURCE_IMAGE_ASPECT_RATIO);
 
         if (mAspectRatioX == CropImageView.SOURCE_IMAGE_ASPECT_RATIO || mAspectRatioY == CropImageView.SOURCE_IMAGE_ASPECT_RATIO) {
             mAspectRatio = CropImageView.SOURCE_IMAGE_ASPECT_RATIO;
@@ -96,13 +96,13 @@ public class AspectRatioTextView extends TextView {
             mAspectRatio = mAspectRatioX / mAspectRatioY;
         }
 
-        mDotSize = getContext().getResources().getDimensionPixelSize(R.dimen.ucrop_size_dot_scale_text_view);
+        mDotSize = getContext().getResources().getDimensionPixelSize(R.dimen.crop_size_dot_scale_text_view);
         mDotPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mDotPaint.setStyle(Paint.Style.FILL);
 
         setTitle();
 
-        int activeColor = getResources().getColor(R.color.ucrop_color_widget_active);
+        int activeColor = getResources().getColor(R.color.crop_color_widget_active);
         applyActiveColor(activeColor);
 
         a.recycle();
@@ -119,7 +119,7 @@ public class AspectRatioTextView extends TextView {
                 },
                 new int[]{
                         activeColor,
-                        ContextCompat.getColor(getContext(), R.color.ucrop_color_widget)
+                        ContextCompat.getColor(getContext(), R.color.crop_color_widget)
                 }
         );
 

@@ -62,9 +62,9 @@ public class OverlayView extends View {
     private OverlayViewChangeListener mCallback;
 
     {
-        mTouchPointThreshold = getResources().getDimensionPixelSize(R.dimen.ucrop_default_crop_rect_corner_touch_threshold);
-        mCropRectMinSize = getResources().getDimensionPixelSize(R.dimen.ucrop_default_crop_rect_min_size);
-        mCropRectCornerTouchAreaLineLength = getResources().getDimensionPixelSize(R.dimen.ucrop_default_crop_rect_corner_touch_area_line_length);
+        mTouchPointThreshold = getResources().getDimensionPixelSize(R.dimen.crop_default_crop_rect_corner_touch_threshold);
+        mCropRectMinSize = getResources().getDimensionPixelSize(R.dimen.crop_default_crop_rect_min_size);
+        mCropRectCornerTouchAreaLineLength = getResources().getDimensionPixelSize(R.dimen.crop_default_crop_rect_corner_touch_area_line_length);
     }
 
     public OverlayView(Context context) {
@@ -434,18 +434,18 @@ public class OverlayView extends View {
      */
     @SuppressWarnings("deprecation")
     protected void processStyledAttributes(@NonNull TypedArray a) {
-        mOvalDimmedLayer = a.getBoolean(R.styleable.ucrop_UCropView_ucrop_oval_dimmed_layer, DEFAULT_OVAL_DIMMED_LAYER);
-        mDimmedColor = a.getColor(R.styleable.ucrop_UCropView_ucrop_dimmed_color,
-                getResources().getColor(R.color.ucrop_color_default_dimmed));
+        mOvalDimmedLayer = a.getBoolean(R.styleable.crop_CropView_crop_oval_dimmed_layer, DEFAULT_OVAL_DIMMED_LAYER);
+        mDimmedColor = a.getColor(R.styleable.crop_CropView_crop_dimmed_color,
+                getResources().getColor(R.color.crop_color_default_dimmed));
         mDimmedStrokePaint.setColor(mDimmedColor);
         mDimmedStrokePaint.setStyle(Paint.Style.STROKE);
         mDimmedStrokePaint.setStrokeWidth(1);
 
         initCropFrameStyle(a);
-        mShowCropFrame = a.getBoolean(R.styleable.ucrop_UCropView_ucrop_show_frame, DEFAULT_SHOW_CROP_FRAME);
+        mShowCropFrame = a.getBoolean(R.styleable.crop_CropView_crop_show_frame, DEFAULT_SHOW_CROP_FRAME);
 
         initCropGridStyle(a);
-        mShowCropGrid = a.getBoolean(R.styleable.ucrop_UCropView_ucrop_show_grid, DEFAULT_SHOW_CROP_GRID);
+        mShowCropGrid = a.getBoolean(R.styleable.crop_CropView_crop_show_grid, DEFAULT_SHOW_CROP_GRID);
     }
 
     /**
@@ -453,10 +453,10 @@ public class OverlayView extends View {
      */
     @SuppressWarnings("deprecation")
     private void initCropFrameStyle(@NonNull TypedArray a) {
-        int cropFrameStrokeSize = a.getDimensionPixelSize(R.styleable.ucrop_UCropView_ucrop_frame_stroke_size,
-                getResources().getDimensionPixelSize(R.dimen.ucrop_default_crop_frame_stoke_width));
-        int cropFrameColor = a.getColor(R.styleable.ucrop_UCropView_ucrop_frame_color,
-                getResources().getColor(R.color.ucrop_color_default_crop_frame));
+        int cropFrameStrokeSize = a.getDimensionPixelSize(R.styleable.crop_CropView_crop_frame_stroke_size,
+                getResources().getDimensionPixelSize(R.dimen.crop_default_crop_frame_stoke_width));
+        int cropFrameColor = a.getColor(R.styleable.crop_CropView_crop_frame_color,
+                getResources().getColor(R.color.crop_color_default_crop_frame));
         mCropFramePaint.setStrokeWidth(cropFrameStrokeSize);
         mCropFramePaint.setColor(cropFrameColor);
         mCropFramePaint.setStyle(Paint.Style.STROKE);
@@ -471,15 +471,15 @@ public class OverlayView extends View {
      */
     @SuppressWarnings("deprecation")
     private void initCropGridStyle(@NonNull TypedArray a) {
-        int cropGridStrokeSize = a.getDimensionPixelSize(R.styleable.ucrop_UCropView_ucrop_grid_stroke_size,
-                getResources().getDimensionPixelSize(R.dimen.ucrop_default_crop_grid_stoke_width));
-        int cropGridColor = a.getColor(R.styleable.ucrop_UCropView_ucrop_grid_color,
-                getResources().getColor(R.color.ucrop_color_default_crop_grid));
+        int cropGridStrokeSize = a.getDimensionPixelSize(R.styleable.crop_CropView_crop_grid_stroke_size,
+                getResources().getDimensionPixelSize(R.dimen.crop_default_crop_grid_stoke_width));
+        int cropGridColor = a.getColor(R.styleable.crop_CropView_crop_grid_color,
+                getResources().getColor(R.color.crop_color_default_crop_grid));
         mCropGridPaint.setStrokeWidth(cropGridStrokeSize);
         mCropGridPaint.setColor(cropGridColor);
 
-        mCropGridRowCount = a.getInt(R.styleable.ucrop_UCropView_ucrop_grid_row_count, DEFAULT_CROP_GRID_ROW_COUNT);
-        mCropGridColumnCount = a.getInt(R.styleable.ucrop_UCropView_ucrop_grid_column_count, DEFAULT_CROP_GRID_COLUMN_COUNT);
+        mCropGridRowCount = a.getInt(R.styleable.crop_CropView_crop_grid_row_count, DEFAULT_CROP_GRID_ROW_COUNT);
+        mCropGridColumnCount = a.getInt(R.styleable.crop_CropView_crop_grid_column_count, DEFAULT_CROP_GRID_COLUMN_COUNT);
     }
 
 }
