@@ -21,7 +21,7 @@ import android.support.annotation.Nullable;
  * <p/>
  * Builder class to ease Intent setup.
  */
-public class UCrop {
+public class Crop {
 
     public static final int REQUEST_CROP = 69;
     public static final int RESULT_ERROR = 96;
@@ -50,11 +50,11 @@ public class UCrop {
      * @param source      Uri for image to crop
      * @param destination Uri for saving the cropped image
      */
-    public static UCrop of(@NonNull Uri source, @NonNull Uri destination) {
-        return new UCrop(source, destination);
+    public static Crop of(@NonNull Uri source, @NonNull Uri destination) {
+        return new Crop(source, destination);
     }
 
-    private UCrop(@NonNull Uri source, @NonNull Uri destination) {
+    private Crop(@NonNull Uri source, @NonNull Uri destination) {
         mCropIntent = new Intent();
         mCropOptionsBundle = new Bundle();
         mCropOptionsBundle.putParcelable(EXTRA_INPUT_URI, source);
@@ -68,7 +68,7 @@ public class UCrop {
      * @param x aspect ratio X
      * @param y aspect ratio Y
      */
-    public UCrop withAspectRatio(float x, float y) {
+    public Crop withAspectRatio(float x, float y) {
         mCropOptionsBundle.putBoolean(EXTRA_ASPECT_RATIO_SET, true);
         mCropOptionsBundle.putFloat(EXTRA_ASPECT_RATIO_X, x);
         mCropOptionsBundle.putFloat(EXTRA_ASPECT_RATIO_Y, y);
@@ -79,7 +79,7 @@ public class UCrop {
      * Set an aspect ratio for crop bounds that is evaluated from source image width and height.
      * User won't see the menu with other ratios options.
      */
-    public UCrop useSourceImageAspectRatio() {
+    public Crop useSourceImageAspectRatio() {
         mCropOptionsBundle.putBoolean(EXTRA_ASPECT_RATIO_SET, true);
         mCropOptionsBundle.putInt(EXTRA_ASPECT_RATIO_X, 0);
         mCropOptionsBundle.putInt(EXTRA_ASPECT_RATIO_Y, 0);
@@ -92,14 +92,14 @@ public class UCrop {
      * @param width  max cropped image width
      * @param height max cropped image height
      */
-    public UCrop withMaxResultSize(@IntRange(from = 100) int width, @IntRange(from = 100) int height) {
+    public Crop withMaxResultSize(@IntRange(from = 100) int width, @IntRange(from = 100) int height) {
         mCropOptionsBundle.putBoolean(EXTRA_MAX_SIZE_SET, true);
         mCropOptionsBundle.putInt(EXTRA_MAX_SIZE_X, width);
         mCropOptionsBundle.putInt(EXTRA_MAX_SIZE_Y, height);
         return this;
     }
 
-    public UCrop withOptions(@NonNull Options options) {
+    public Crop withOptions(@NonNull Options options) {
         mCropOptionsBundle.putAll(options.getOptionBundle());
         return this;
     }
@@ -163,12 +163,12 @@ public class UCrop {
     }
 
     /**
-     * Get Intent to start {@link UCropActivity}
+     * Get Intent to start {@link CropActivity}
      *
-     * @return Intent for {@link UCropActivity}
+     * @return Intent for {@link CropActivity}
      */
     public Intent getIntent(@NonNull Context context) {
-        mCropIntent.setClass(context, UCropActivity.class);
+        mCropIntent.setClass(context, CropActivity.class);
         mCropIntent.putExtras(mCropOptionsBundle);
         return mCropIntent;
     }
@@ -274,9 +274,9 @@ public class UCrop {
         /**
          * Choose what set of gestures will be enabled on each tab - if any.
          */
-        public void setAllowedGestures(@UCropActivity.GestureTypes int tabScale,
-                                       @UCropActivity.GestureTypes int tabRotate,
-                                       @UCropActivity.GestureTypes int tabAspectRatio) {
+        public void setAllowedGestures(@CropActivity.GestureTypes int tabScale,
+                                       @CropActivity.GestureTypes int tabRotate,
+                                       @CropActivity.GestureTypes int tabAspectRatio) {
             mOptionBundle.putIntArray(EXTRA_ALLOWED_GESTURES, new int[]{tabScale, tabRotate, tabAspectRatio});
         }
 

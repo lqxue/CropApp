@@ -1,29 +1,29 @@
 package com.token.cropapp;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 
-import com.tokentm.sdk.crop.UCrop;
-import com.tokentm.sdk.crop.UCropUtils;
+import com.tokentm.sdk.crop.Crop;
+import com.tokentm.sdk.crop.util.CropUtils;
 import com.xxf.arch.XXF;
+import com.xxf.arch.core.Logger;
 import com.xxf.arch.core.activityresult.ActivityResult;
-import com.xxf.arch.utils.ToastUtils;
 import com.xxf.view.actiondialog.BottomPicSelectDialog;
 
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
 
-//import com.tokentm.sdk.crop.UCrop;
+//import com.tokentm.sdk.crop.Crop;
 
 /**
  * @author lqx
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 new BottomPicSelectDialog(MainActivity.this, new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        startUCrop(MainActivity.this, s, UCrop.REQUEST_CROP);
+                        startUCrop(MainActivity.this, s, Crop.REQUEST_CROP);
                     }
                 }).show();
             }
@@ -74,13 +74,13 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param activity       上下文
      * @param sourceFilePath 需要裁剪图片的绝对路径
-     * @param requestCode    比如：UCrop.REQUEST_CROP
+     * @param requestCode    比如：Crop.REQUEST_CROP
      * @return //
      */
     @SuppressLint("CheckResult")
     public void startUCrop(final FragmentActivity activity, String sourceFilePath,
                            int requestCode) {
-        XXF.startActivityForResult(activity, UCropUtils.getUCropLauncher(activity, sourceFilePath), requestCode)
+        XXF.startActivityForResult(activity, CropUtils.getUCropLauncher(activity, sourceFilePath), requestCode)
                 .filter(new Predicate<ActivityResult>() {
             @Override
             public boolean test(ActivityResult activityResult) throws Exception {
@@ -89,7 +89,8 @@ public class MainActivity extends AppCompatActivity {
         }).subscribe(new Consumer<ActivityResult>() {
             @Override
             public void accept(ActivityResult activityResult) throws Exception {
-                final Uri resultUri = UCrop.getOutput(activityResult.getData());
+                final Uri resultUri = Crop.getOutput(activityResult.getData());
+                Log.d("=====",resultUri.getPath());
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.inSampleSize = 4;
                 Bitmap bitmap = BitmapFactory.decodeFile(resultUri.getPath(), options);

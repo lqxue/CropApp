@@ -29,4 +29,5 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api project(path: ':lib_crop')
+    api 'com.github.NBXXF:xxf_android:2.5.0'//主要lib
 }

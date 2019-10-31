@@ -13,16 +13,16 @@ import com.tokentm.sdk.crop.callback.CropBoundsChangeListener;
 import com.tokentm.sdk.crop.callback.OverlayViewChangeListener;
 
 
-public class UCropView extends FrameLayout {
+public class CropView extends FrameLayout {
 
     private final GestureCropImageView mGestureCropImageView;
     private final OverlayView mViewOverlay;
 
-    public UCropView(Context context, AttributeSet attrs) {
+    public CropView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public UCropView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CropView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         LayoutInflater.from(context).inflate(R.layout.crop_view, this, true);
