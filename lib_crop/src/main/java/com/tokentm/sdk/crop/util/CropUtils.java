@@ -35,7 +35,7 @@ public class CropUtils {
         Crop crop = Crop.of(sourceUri, destinationUri);
         //初始化UCrop配置
         Crop.Options options = new Crop.Options();
-        //设置裁剪图片可操作的手势
+        //设置裁剪图片是否可操作的手势，分别对应容器下面的三个模式，同时设置代表三个模式都支持手势旋转。
         options.setAllowedGestures(CropActivity.ALL, CropActivity.ALL, CropActivity.ALL);
         //是否隐藏底部容器，默认显示，true-隐藏  false-显示
         options.setHideBottomControls(false);
