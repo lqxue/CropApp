@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.0"
+    compileSdkVersion 29
+    buildToolsVersion "28.0.3"
     defaultConfig {
         applicationId "com.token.cropapp"
         minSdkVersion 21
-        targetSdkVersion 27
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         ndk {
@@ -28,6 +28,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api project(path: ':lib_crop')
-    api 'com.github.NBXXF:xxf_android:2.5.0'//主要lib
+    implementation project(path: ':lib_crop')
+    implementation 'com.github.NBXXF:xxf_android:2.5.0'
 }
